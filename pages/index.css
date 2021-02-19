@@ -1,0 +1,99 @@
+@import url(../vendor/normalize.css);
+@import url(../vendor/fonts/fonts.css);
+@import url(../blocks/background-color/background-color.css);
+@import url(../blocks/page/page.css);
+@import url(../blocks/header/header.css);
+@import url(../blocks/header/__logo/header__logo.css);
+@import url(../blocks/profile/profile.css);
+@import url(../blocks/profile/__add-button/profile__add-button.css);
+@import url(../blocks/profile/__avatar/profile__avatar.css);
+@import url(../blocks/profile/__edit-button/profile__edit-button.css);
+@import url(../blocks/profile/__info/profile__info.css);
+@import url(../blocks/profile/__job/profile__job.css);
+@import url(../blocks/profile/__name/profile__name.css);
+@import url(../blocks/elements/elements.css);
+@import url(../blocks/elements/__button-like/elements__button-like.css);
+@import url(../blocks/elements/__element/elements__element.css);
+@import url(../blocks/elements/__photo/elements__photo.css);
+@import url(../blocks/elements/__subline/elements__subline.css);
+@import url(../blocks/elements/__title/elements__title.css);
+@import url(../blocks/footer/footer.css);
+
+.popup {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    bottom: 0px;
+    right: 0px;
+}
+.popup::before {
+    content: '';
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    bottom: 0px;
+    right: 0px;
+    background-color: black;
+    opacity: 0.5;
+    z-index: 1;
+}
+.popup_opened {
+    display: flex;
+}
+.popup__container {
+    display: flex;
+    flex-direction: column;
+    width: 430px;
+    height: 330px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    z-index: 2;
+}
+.popup__close-button {
+    position: relative;
+    top: -40px;
+    left: 430px;
+    background-position: center;
+    padding: 0;
+    border: none;
+    background-image: url(../images/close-icon.png);
+    width: 40px;
+    height: 40px;
+    background-color: black;
+    background-repeat: no-repeat;
+    transition: opacity linear 0.3s;
+    cursor: pointer;
+}
+.popup__close-button:hover {
+    opacity: 0.6;
+}
+.popup__title {
+    color: black;
+    font-weight: 900;
+    font-size: 24px;
+    line-height: 29px;
+    margin: 34px auto 54px 36px;
+}
+.popup__input{
+    width: calc(100% - 72px);
+    height: 27px;
+    margin:0 auto 30px auto;
+    padding: 0px;
+    border: none;
+    border-bottom: 1px solid rgba(0,0,0,0.2);
+}
+.popup__button {
+    margin: auto auto 37px auto;
+    width: calc(100% - 72px);
+    height: 50px;
+    background-color: black;
+    border-radius: 2px;
+    color: white;
+    transition: opacity linear 0.3s;
+}
+.popup__button:hover {
+    opacity: 0.8;
+}
