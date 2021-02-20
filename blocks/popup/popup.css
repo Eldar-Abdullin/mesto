@@ -1,0 +1,22 @@
+.popup {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    bottom: 0px;
+    right: 0px;
+  }
+  .popup::before {
+    content: "";
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    bottom: 0px;
+    right: 0px;
+    background-color: black;
+    opacity: 0.5;
+    z-index: 1;
+  }
+  
