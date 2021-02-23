@@ -12,6 +12,7 @@
     background-repeat: no-repeat;
     transition: opacity linear 0.3s;
     cursor: pointer;
+    outline: none;
     object-fit: fill;
   }
   .popup__close-button:hover {

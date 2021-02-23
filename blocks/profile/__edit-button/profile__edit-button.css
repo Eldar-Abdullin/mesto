@@ -2,7 +2,7 @@
     width: 24px;
     height: 24px;
     background-color: black;
-    background-image: url(../../../images/Edit-Button.png);
+    background-image: url(../../../images/edit-button.svg);
     background-repeat: no-repeat;
     background-position: center;
     border: none;
@@ -10,6 +10,9 @@
     margin-top: 15px;
     padding: 0;
     transition: opacity linear 0.3s;
+    cursor: pointer;
+    outline: none;
+    border: 1px solid white;
 }
 .profile__edit-button:hover {
     opacity: 0.6;
@@ -20,6 +23,6 @@
         height: 18px;
         margin-top: 8px;
         margin-left: 10px;
-        border: 1px solid white;
+        background-size: 7.5px;
     }
 }
