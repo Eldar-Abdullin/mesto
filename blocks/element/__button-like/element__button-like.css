@@ -1,4 +1,4 @@
-.elements__button-like {
+.element__button-like {
     background-image: url(../../../images/like-button.jpg);
     background-repeat: no-repeat;
     min-width: 22px;
@@ -8,10 +8,10 @@
     padding: 0;
     transition: opacity linear 0.3s;
 }
-.elements__button-like:hover {
+.element__button-like:hover {
     opacity: 0.5;
 }
-.elements__button-like:active {
+.element__button-like:active {
     background-color: black;
     background-image: url(../../../images/like-button-active.jpg);
     border: none;
