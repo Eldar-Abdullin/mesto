@@ -4,6 +4,16 @@
     row-gap: 20px;
     grid-template-columns: repeat(auto-fit, 282px);
     margin-bottom: 47px;
-    align-content: center;
+    margin-left: auto;
+    margin-right: auto;
 }
-
+@media screen and (max-width:900px) {
+    .elements {
+        max-width: 581px;
+    }
+}
+@media screen and (max-width:635px) {
+    .elements {
+        max-width: 282px;
+    }
+}
