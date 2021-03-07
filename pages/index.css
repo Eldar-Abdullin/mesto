@@ -25,3 +25,20 @@
 @import url(../blocks/popup/__input/popup__input.css);
 @import url(../blocks/popup/__title/popup__title.css);
 @import url(../blocks/popup/_opened/popup_opened.css);
+.element__delete {
+    background-image: url(../images/basket.svg);
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 18px;
+    height: 19.3px;
+    border: none;
+    padding: 0;
+    background-color: transparent;
+    cursor: pointer;
+    transition: opacity linear 0.3s;
+    outline: none;
+}
+.element__delete:hover {
+    opacity: 0.6;
+}
