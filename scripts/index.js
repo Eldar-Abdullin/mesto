@@ -116,7 +116,7 @@ function handleFormSubmit (evt) {
     closePopup(popupProfile);
 }
 // отслеживаемые события
-formElement.addEventListener('submit', handleFormSubmit; 
+formElement.addEventListener('submit', handleFormSubmit); 
 editButton.addEventListener('click', openProfilePopup);
 closeButton.addEventListener('click', function() {
   closePopup(popupProfile)
@@ -128,6 +128,6 @@ addButton.addEventListener('click', function() {
   openPopup(popupAdd);
 });
 imgCloseButton.addEventListener('click', function() {
-  closePopup(popupImage);
+  closePopup(popupImg);
 });
 formAddElement.addEventListener('submit', addElement);
