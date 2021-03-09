@@ -21,13 +21,12 @@
           </div>
           <button type="button" class="profile__add-button"></button>
         </section>
-        <section class="elements">
-        </section>
+        <section class="elements"></section>
       </main>
       <footer class="footer">
         <p>&copy;2021 Mesto Russia</p>
       </footer>
-      <div class="popup profile-popup">
+      <div class="popup popup_profile">
         <form name="profile editor" class="popup__container">
           <button type="reset" class="popup__close-button"></button>
           <h2 class="popup__title">Редактировать профиль</h2>
@@ -46,9 +45,12 @@
           <button type="submit" class="popup__button">Сохранить</button>
         </form>
       </div>
-      <div class="popup add-popup">
-        <form name="place editor" class="popup__container">
-          <button type="reset" class="popup__close-button popup__close-button_add"></button>
+      <div class="popup popup_add">
+        <form name="place editor" class="popup__container popup__container_add">
+          <button
+            type="reset"
+            class="popup__close-button popup__close-button_add"
+          ></button>
           <h2 class="popup__title">Новое место</h2>
           <input
             type="text"
@@ -65,17 +67,27 @@
           <button type="submit" class="popup__button">Создать</button>
         </form>
       </div>
+      <div class="popup popup_img">
+        <article class="popup__img-article">
+          <button
+            type="reset"
+            class="popup__close-button popup__close-button_img"
+          ></button>
+          <img class="popup__image" src="#" alt="#" />
+          <p class="popup__img-caption"></p>
+        </article>  
+      </div>
     </div>
     <template class="template">
       <article class="element">
-        <img
-          src="#"
-          alt="#"
-          class="element__photo"
-        />
-        <button class="element__delete"></button>
+        <img src="#" alt="#" class="element__photo" />
+        <button
+          type="button"
+          aria-label="Удалить"
+          class="element__delete-button"
+        ></button>
         <div class="element__subline">
-          <h2 class="element__title">Домбай</h2>
+          <h2 class="element__title"></h2>
           <button
             type="button"
             aria-label="Нравится"
