@@ -121,13 +121,33 @@ editButton.addEventListener('click', openProfilePopup);
 closeButton.addEventListener('click', function() {
   closePopup(popupProfile)
 });
+popupProfile.addEventListener('click', function(evt) {
+  if (evt.target.classList.contains('popup'))
+  closePopup(popupProfile)
+})
 addCloseButton.addEventListener('click', function() {
  closePopup(popupAdd);
 });
+popupAdd.addEventListener('click', function(evt) {
+  if (evt.target.classList.contains('popup'))
+  closePopup(popupAdd);
+})
 addButton.addEventListener('click', function() {
   openPopup(popupAdd);
 });
 imgCloseButton.addEventListener('click', function() {
   closePopup(popupImg);
 });
+popupImg.addEventListener('click', function (evt) {
+  if (evt.target.classList.contains('popup'))
+  closePopup(popupImg);
+})
+const closingPopup = (evt) => {
+  if (evt.key === 'Escape') {
+    closePopup(popupImg);
+    closePopup(popupAdd);
+    closePopup(popupProfile);
+}
+}
+document.addEventListener('keydown', closingPopup);
 formAddElement.addEventListener('submit', addElement);
