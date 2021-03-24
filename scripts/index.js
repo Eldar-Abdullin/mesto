@@ -143,8 +143,6 @@ const closingPopup = (evt) => {
   if (evt.key === 'Escape') {
     const currentPopup = document.querySelector('.popup_opened')
     closePopup(currentPopup);
-    console.log('нажат esc')
 }
 }
-document.addEventListener('keydown', closingPopup);
 formAddElement.addEventListener('submit', addElement);
