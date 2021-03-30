@@ -95,6 +95,13 @@ function openProfilePopup() {
     openPopup(popupProfile);
     nameInput.value = profileName.textContent;
     jobInput.value = profileJob.textContent;
+    validateButton();
+}
+// функция чтобы кнопка была валидной
+function validateButton() {
+  const popupButtonProfile = document.querySelector('.popup__button_profile');
+  popupButtonProfile.removeAttribute('disabled');
+  popupButtonProfile.classList.remove('popup__button_disabled')
 }
 // функция открытия popup
 function openPopup (popup) {
