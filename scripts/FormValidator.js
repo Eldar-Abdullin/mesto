@@ -17,18 +17,17 @@ _hasInvalidInput() {
 }
 _showInputError(inputElement) {
     this._errorElement = this._form.querySelector(`#${inputElement.id}-error`);
-    this._inputElement.classList.add(this._inputErrorClass);
-    this._errorElement.textContent = this._inputElement.validationMessage;
+    inputElement.classList.add(this._inputErrorClass);
+    this._errorElement.textContent = inputElement.validationMessage;
     this._errorElement.classList.add(this._errorClass);
 }
 _hideInputError (inputElement){
     this._errorElement = this._form.querySelector(`#${inputElement.id}-error`);
-    this._inputElement.classList.remove(this._inputErrorClass);
+    inputElement.classList.remove(this._inputErrorClass);
     this._errorElement.classList.remove(this._errorClass);
 };
 
 _checkInput(inputElement) {
-    this._inputElement = this._form.querySelector(this._inputSelector)
     if (inputElement.validity.valid) {
         this._hideInputError(inputElement);
     } else {
@@ -47,6 +46,7 @@ _toggleButtonState() {
 }
 _setInputListeners() {
     this._inputList = Array.from(this._form.querySelectorAll(this._inputSelector));
+    console.log(this._inputList)
     this._buttonElement = this._form.querySelector(this._submitButtonSelector);
     this._inputList.forEach( inputElement => {
         inputElement.addEventListener('input', () => {
