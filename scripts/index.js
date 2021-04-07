@@ -1,94 +1,30 @@
-//Присваиваем значения
-const editButton = document.querySelector('.profile__edit-button');
-const closeButton = document.querySelector('.popup__close-button');
-const addCloseButton = document.querySelector('.popup__close-button_add');
-const addButtonSubmit = document.querySelector('.popup__button_add');
-const formElement = document.querySelector('.popup__container');
-const formAddElement = document.querySelector('.popup__container_add');
-const nameInput = document.querySelector('.popup__input_type_name');
-const jobInput = document.querySelector('.popup__input_type_job');
-const popupProfile = document.querySelector('.popup_profile');
-const popupAdd= document.querySelector('.popup_add')
-const popupImg = document.querySelector('.popup_img')
-const profileName = document.querySelector('.profile__name');
-const profileJob = document.querySelector('.profile__job');
-const addButton = document.querySelector('.profile__add-button');
-const templateElement = document.querySelector('.template');
-const elements = document.querySelector('.elements');
-const imgCloseButton = document.querySelector('.popup__close-button_img');
-const popupImage = document.querySelector('.popup__image');
-const popupImageCaption = document.querySelector('.popup__img-caption');
-const placeInput = document.querySelector('.popup__input_place_name');
-const linkInput = document.querySelector('.popup__input_place_link');
-const initialCards = [
-    {
-      name: 'Архыз',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-    },
-    {
-      name: 'Челябинская область',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-    },
-    {
-      name: 'Иваново',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-    },
-    {
-      name: 'Камчатка',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-    },
-    {
-      name: 'Холмогорский район',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-    },
-    {
-      name: 'Байкал',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-    }
-  ];
-function createCardElement(item) {
-  const newELement = templateElement.content.cloneNode(true);
-  const nameElement = newELement.querySelector('.element__title');
-  nameElement.textContent = item.name;
-  const imgElement = newELement.querySelector('.element__photo');
-  imgElement.alt = item.name
-  imgElement.src = item.link
-  imgElement.addEventListener('click', function() {
-    popupImage.src = item.link;
-    popupImage.alt = item.name;
-    popupImageCaption.textContent = item.name;
-    openPopup(popupImg);
-  });
-  const deleteButton = newELement.querySelector('.element__delete-button');
-  deleteButton.addEventListener('click', deleteElement);
-  const likeButton = newELement.querySelector('.element__button-like');
-  likeButton.addEventListener('click', function() {
-    likeButton.classList.toggle('element__button-like_active')
-  })
-  return newELement
-}
-// функция добавления нового элемента
+import {Card} from './Card.js'
+import {FormValidator} from './FormValidator.js'
+import {editButton, closeButton, addCloseButton, addButtonSubmit, formElement, formAddElement, nameInput, jobInput, popupProfile, popupAdd, popupImg, profileName, profileJob, addButton, elements, imgCloseButton, placeInput, linkInput, initialCards, validationConfig, addForm, profileForm} from './constants.js'
+//функция добавления нового элемента
 function addElement(evt) {
   evt.preventDefault();
   const item = {name: placeInput.value, link: linkInput.value}
-  const newElement = createCardElement(item);
-  elements.prepend(newElement);
+  const newElement = new Card(item, '.template');
+  elements.prepend(newElement.getCard());
   closePopup(popupAdd);
   placeInput.value = '';
   linkInput.value = '';
 }
-// функция удаления Element
-function deleteElement(evt) {
-  const target = evt.target;
-  const currentElement = target.closest('.element');
-  currentElement.remove();
-}
 // функция рендеринга массива в элементы
 function renderList() {
-  const result = initialCards.map(createCardElement); 
-elements.append(...result);
+  initialCards.forEach((item)=> {
+    const card = new Card(item, '.template');
+    elements.append(card.getCard())
+  }); 
 }
 renderList();
+// делаем валидацию
+  const validateProfileForm = new FormValidator(validationConfig, profileForm);
+  validateProfileForm.enableValidation();
+  const validateAddForm = new FormValidator(validationConfig, addForm);
+  validateAddForm.enableValidation();
+
 // делаем функцию открытия ProfilePopup 
 // и сразу вставляем данные в поля ввода из профиля
 function openProfilePopup() {
@@ -104,7 +40,7 @@ function validateButton() {
   popupButtonProfile.classList.remove('popup__button_disabled')
 }
 // функция открытия popup
-function openPopup (popup) {
+export function openPopup (popup) {
   popup.classList.add('popup_opened');
   document.addEventListener('keydown', closingPopup);
 }
