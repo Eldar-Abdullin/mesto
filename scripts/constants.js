@@ -13,11 +13,14 @@ const profileForm = document.querySelector('.popup__container-profile');
 const addForm = document.querySelector('.popup__container_add');
 const popupAdd= document.querySelector('.popup_add')
 const popupImg = document.querySelector('.popup_img')
+const popupImage = document.querySelector('.popup__image');
+const popupImageCaption = document.querySelector('.popup__img-caption');
 const profileName = document.querySelector('.profile__name');
 const profileJob = document.querySelector('.profile__job');
 const addButton = document.querySelector('.profile__add-button');
 const elements = document.querySelector('.elements');
 const imgCloseButton = document.querySelector('.popup__close-button_img');
+const popupButtonProfile = document.querySelector('.popup__button_profile');
 const placeInput = document.querySelector('.popup__input_place_name');
 const linkInput = document.querySelector('.popup__input_place_link');
 
@@ -54,4 +57,4 @@ const initialCards = [
       link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
     }
   ];
-  export {editButton, closeButton, addCloseButton, addButtonSubmit, formElement, formAddElement, nameInput, jobInput, popupProfile, popupAdd, popupImg, profileName, profileJob, addButton, elements, imgCloseButton, placeInput, linkInput, initialCards, validationConfig, profileForm, addForm}
+  export {editButton, closeButton, addCloseButton, addButtonSubmit, formElement, formAddElement, nameInput, jobInput, popupProfile, popupAdd, popupImg, profileName, profileJob, addButton, elements, imgCloseButton, placeInput, linkInput, initialCards, validationConfig, profileForm, addForm, popupImage, popupImageCaption, popupButtonProfile}
