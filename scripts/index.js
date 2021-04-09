@@ -39,6 +39,7 @@ function openProfilePopup() {
     nameInput.value = profileName.textContent;
     jobInput.value = profileJob.textContent;
     validateButton();
+    validateProfileForm.hideInputErrors();
 }
 // функция чтобы кнопка была валидной
 function validateButton() {
@@ -46,10 +47,6 @@ function validateButton() {
   popupButtonProfile.removeAttribute('disabled');
   popupButtonProfile.classList.remove('popup__button_disabled')
 }
-//функция для скрытия ошибок
-
-// функция закрытия popup
-// делаем функцию закрытия ProfilePopup
 // делаем функцию отправки данных из popup в профиль
 function handleEditProfileFormSubmit (evt) {
     evt.preventDefault();
@@ -74,6 +71,7 @@ addCloseButton.addEventListener('click', function() {
 });
 popupAdd.addEventListener('click', clickOnOverlay)
 addButton.addEventListener('click', function() {
+  validateAddForm.hideInputErrors();
   addButtonSubmit.classList.add('popup__button_disabled')
   addButtonSubmit.setAttribute('disabled', true);
   openPopup(popupAdd);

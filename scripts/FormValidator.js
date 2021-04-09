@@ -56,12 +56,19 @@ _setInputListeners() {
         this._toggleButtonState(inputElement);
     });
 }
-
+hideInputErrors() {
+    const inputCurrentForm = this._form.querySelectorAll(this._inputSelector);
+    inputCurrentForm.forEach( item => {
+      const errorContainers = this._form.querySelector(`#${item.id}-error`)
+      item.classList.remove(this._inputErrorClass)
+      errorContainers.classList.remove(this._errorClass)
+    })
+  }
 enableValidation() {
     this._form.addEventListener('submit', (evt) => {
         evt.preventDefault();
     })
-    this._setInputListeners(this._form, )
+    this._setInputListeners(this._form)
 };
 }
 export {FormValidator}

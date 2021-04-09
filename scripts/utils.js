@@ -1,5 +1,4 @@
  function openPopup (popup) {
-     hideErrorsInForms(popup)
     popup.classList.add('popup_opened');
     document.addEventListener('keydown', closeByEsc);
   }
@@ -14,15 +13,4 @@ const closeByEsc = (evt) => {
       closePopup(currentPopup);
   }
 }
-function hideErrorsInForms (form) {
-    const inputCurrentForm = form.querySelectorAll('.popup__input');
-    console.log(inputCurrentForm)
-    inputCurrentForm.forEach( item => {
-      const errorContainers = form.querySelector(`#${item.id}-error`)
-      console.log(errorContainers)
-      console.log(item)
-      item.classList.remove('popup__input_type_error')
-      errorContainers.classList.remove('popup__error_visible')
-    })
-  }
 export {openPopup, closePopup, closeByEsc}
