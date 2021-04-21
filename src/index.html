@@ -3,17 +3,24 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./pages/index.css" />
     <title>Mesto</title>
   </head>
   <body class="background-color">
     <div class="page">
       <header class="header">
-        <img src="./images/Logo.svg" alt="логотип" class="header__logo" />
+        <img
+          src="<%=require('./images/Logo.svg')%>"
+          alt="логотип"
+          class="header__logo"
+        />
       </header>
       <main>
         <section class="profile">
-          <img src="./images/avatar.jpg" alt="аватар" class="profile__avatar" />
+          <img
+            src="<%=require('./images/avatar.jpg')%>"
+            alt="аватар"
+            class="profile__avatar"
+          />
           <div class="profile__info">
             <h1 class="profile__name">Жак-Ив Кусто</h1>
             <button type="button" class="profile__edit-button"></button>
@@ -27,7 +34,11 @@
         <p>&copy;2021 Mesto Russia</p>
       </footer>
       <div class="popup popup_profile">
-        <form name="profile-editor" class="popup__container popup__container-profile" novalidate>
+        <form
+          name="profile-editor"
+          class="popup__container popup__container-profile"
+          novalidate
+        >
           <button type="reset" class="popup__close-button"></button>
           <h2 class="popup__title">Редактировать профиль</h2>
           <input
@@ -52,7 +63,9 @@
             required
           />
           <span id="job-input-error" class="popup__error"></span>
-          <button type="submit" class="popup__button popup__button_profile">Сохранить</button>
+          <button type="submit" class="popup__button popup__button_profile">
+            Сохранить
+          </button>
         </form>
       </div>
       <div class="popup popup_add">
@@ -84,7 +97,13 @@
             required
           />
           <span id="link-input-error" class="popup__error"></span>
-          <button type="submit" class="popup__button popup__button_add" disabled>Создать</button>
+          <button
+            type="submit"
+            class="popup__button popup__button_add"
+            disabled
+          >
+            Создать
+          </button>
         </form>
       </div>
       <div class="popup popup_img">
@@ -116,6 +135,5 @@
         </div>
       </article>
     </template>
-    <script type="module" src="./scripts/index.js"></script>
   </body>
 </html>
