@@ -22,7 +22,7 @@ _handleEscClose (evt) {
 };
 //Содержит публичный метод setEventListeners, который добавляет слушатель клика иконке закрытия попапа.
 setEventListeners(){
-    this._popup.querySelector('.popup__close-button').addEventListener('click', this.close())
+    this._popup.querySelector('.popup__close-button').addEventListener('click', () => this.close())
     this._popup.addEventListener('click', (evt) => {
         if(evt.target.classList.contains('popup'))
         this.close()

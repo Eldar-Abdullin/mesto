@@ -1,11 +1,11 @@
-import '.../index.css'
-import {Card} from '../components/Card.js'
-import Section from '../components/Section.js'
-import PopupWithImage from '../components/PopupWithImage.js'
-import PopupWithform from '../components/PopupWithForm.js'
-import UserInfo from '../components/UserInfo.js'
-import {FormValidator} from '../components/FormValidator.js'
-import {editButton,addButtonSubmit, nameInput, jobInput, addButton, initialCards, validationConfig, addForm, profileForm, popupButtonProfile, elements} from '../utils/constants.js'
+import './index.css'
+import {Card} from '../scripts/components/Card'
+import Section from '../scripts/components/Section.js'
+import PopupWithImage from '../scripts/components/PopupWithImage.js'
+import PopupWithform from '../scripts/components/PopupWithForm.js'
+import UserInfo from '../scripts/components/UserInfo.js'
+import {FormValidator} from '../scripts/components/FormValidator.js'
+import {editButton, nameInput, jobInput, addButton, initialCards, validationConfig, addForm, profileForm, elements} from '../scripts/utils/constants.js'
 // функция создания новой карточки
 const createCard = (item) => {
   const newCard = new Card({data: item, 

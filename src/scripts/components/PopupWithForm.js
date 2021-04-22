@@ -1,4 +1,3 @@
-import {formAddElement} from '../utils/constants.js'
 import Popup from './Popup.js'
 export default class PopupWithForm extends Popup {
     constructor(selectorPopup, handleFormSubmit) {
@@ -19,13 +18,13 @@ export default class PopupWithForm extends Popup {
     // Перезаписывает родительский метод setEventListeners. Метод setEventListeners класса PopupWithForm должен не только добавлять обработчик клика иконке закрытия, но и добавлять обработчик сабмита формы.
     setEventListeners() {
         this._popupForm.addEventListener('submit', (evt) =>
-        {evt.preventDefault 
+        {evt.preventDefault() 
         this._handleFormSubmit(this._getInputValues())})
         super.setEventListeners()   
     }
     //Перезаписывает родительский метод close, так как при закрытии попапа форма должна ещё и сбрасываться.
     close () {
-        formAddElement.reset()
+        this._popupForm.reset()
         super.close()
     }
 }
