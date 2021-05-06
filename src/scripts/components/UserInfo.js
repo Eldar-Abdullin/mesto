@@ -2,8 +2,7 @@ export default class UserInfo {
     constructor(selectorUserName, selectorUserJob, selectorUserAvatar){
         this._userName = document.querySelector(selectorUserName);
         this._userJob = document.querySelector(selectorUserJob);
-        this._userAvatar = document.querySelector(selectorUserAvatar)
-        console.log(this.id)
+        this._userAvatar = document.querySelector(selectorUserAvatar);
     }
     // Содержит публичный метод getUserInfo, который возвращает объект с данными пользователя. Этот метод пригодится когда данные пользователя нужно будет подставить в форму при открытии.
     getUserInfo() {
@@ -13,15 +12,9 @@ export default class UserInfo {
         return this._userInfo 
     }
     // Содержит публичный метод setUserInfo, который принимает новые данные пользователя и добавляет их на страницу.
-    setUserInfo(name, job, avatar, myId) {
+    setUserInfo(name, job, avatar) {
         this._userName.textContent = name;
         this._userJob.textContent = job;
         this._userAvatar.src = avatar;
-        this._id = myId
-    }
-    getId(id) {
-        console.log(id)
-        this.id = id
-        return this.id
     }
 }

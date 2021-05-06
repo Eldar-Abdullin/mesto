@@ -1,5 +1,5 @@
 //Присваиваем значения
-const avatarButton = document.querySelector('.element__change-button')
+const avatarButton = document.querySelector('.profile__change-button')
 const editButton = document.querySelector('.profile__edit-button');
 const closeButton = document.querySelector('.popup__close-button');
 const addCloseButton = document.querySelector('.popup__close-button_add');
@@ -58,4 +58,4 @@ const initialCards = [
       link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
     }
   ];
-  export {avatarButton,editButton, closeButton, addCloseButton, addButtonSubmit, formElement, formAddElement, nameInput, jobInput, popupProfile, popupAdd, popupImg, profileName, profileJob, addButton, elements, imgCloseButton, placeInput, linkInput, initialCards, validationConfig, profileForm, addForm, popupImage, popupImageCaption, popupButtonProfile,avatarForm}
+  export {avatarButton,editButton, closeButton, addCloseButton, addButtonSubmit, formElement, formAddElement, nameInput, jobInput, popupProfile, popupAdd, popupImg, profileName, profileJob, addButton, elements, imgCloseButton, placeInput, linkInput, initialCards, validationConfig, profileForm, addForm, popupImage, popupImageCaption, popupButtonProfile,avatarForm }

@@ -29,7 +29,9 @@ export default class Api {
                 console.log(err)
             })
         }
-
+    getAllNeededData() {
+        return Promise.all([this.getAllCards(), this.getUserInfo()])
+    }    
     changeUserInfo(name, about) {
         return fetch(`${this._url}/users/me`, {
             method: 'PATCH',

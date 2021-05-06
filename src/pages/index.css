@@ -38,7 +38,7 @@
 .profile__div-avatar {
     position: relative;
 }
-.element__change-button {
+.profile__change-button {
     background-image: url(../images/Change-avatar.svg);
     background-position: center;
 
@@ -57,7 +57,7 @@
     border: none;
     opacity: 0;
 }
-.element__change-button:hover {
+.profile__change-button:hover {
     opacity: 1;
     background-color: rgba(0, 0, 0, 0.6);
 }

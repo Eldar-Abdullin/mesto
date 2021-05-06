@@ -8,28 +8,6 @@ import UserInfo from '../scripts/components/UserInfo.js'
 import Api from '../scripts/components/Api'
 import {FormValidator} from '../scripts/components/FormValidator.js'
 import {avatarButton,editButton, nameInput, jobInput, addButton, validationConfig, addForm, profileForm, elements, avatarForm} from '../scripts/utils/constants.js'
-// функция создания новой карточки
-
-
-const createCard = (item) => {
-  const newCard = new Card({data: item, 
-  handleCardClick: () => {
-    imagePopup.open(item)
-  },
-  handleLikeClick: () => {
-    api.likeCard(item._id)
-    console.log(item._id)
-  },
-  handleDeleteIconClick: () => {
-    confirmDeletePopup.open()
-    confirmDeletePopup.setSubmitAction(() => {api.deleteCard(item._id)})
-  }
-},
-  '.template',
-  myId
-  );
-  return newCard.getCard();
-}
 const api = new Api({
   url: 'https://mesto.nomoreparties.co/v1/cohort-23',
   headers: {
@@ -37,29 +15,48 @@ const api = new Api({
     'Content-Type': 'application/json'
   }
 })
-const myId = api.getUserInfo()
-.then( (data) => {
-  return data._id
-}).then( res => {
-  return res
-})
+api.getAllNeededData().then ( ([cardsArray, userData]) => {
+const userInfo = new UserInfo('.profile__name', '.profile__job', '.profile__avatar') 
+api.getUserInfo()
+// .then((data) => {
+//   userInfo.setUserInfo(data.name, data.about, data.avatar)
+// })
+// // функция создания новой карточки
+const createCard = (item) => {
+  const newCard = new Card({data: item, 
+  handleCardClick: () => {
+    imagePopup.open(item)
+  },
+  handleLikeClick: () => {
+    api.likeCard(item._id)
+    console.log(item)
+    console.log(item._id)
+  },
+  handleDeleteIconClick: () => {
+    confirmDeletePopup.open()
+    confirmDeletePopup.setSubmitAction(() => {api.deleteCard(item._id)
+    newCard.deleteCardHandler()}
+    )
+  }
+},
+  '.template',
+  userId
+  );
+  return newCard.getCard();
+}
 const cardList = new Section({
   renderer: (item) => {
     const card = createCard(item);
     cardList.addItem(card)
   }},
   elements)
-const apiCard = api.getAllCards()
-apiCard.then((data) => {
-  cardList.renderItems(data)
-  })
-  const userInfo = new UserInfo('.profile__name', '.profile__job', '.profile__avatar') 
-const user = api.getUserInfo()
-
-user.then((data) => {
-  userInfo.setUserInfo(data.name, data.about, data.avatar, data._id)
-  userInfo.getId(data._id)
-})
+//const apiCard = api.getAllCards()
+// apiCard.then((data) => {
+//   cardList.renderItems(data)
+//   })
+  const userId = userData._id
+  userInfo.setUserInfo(userData.name, userData.about, userData.avatar)
+  cardList.renderItems(cardsArray)
 const imagePopup = new PopupWithImage('.popup_img', '.popup__image', '.popup__img-caption')
 imagePopup.setEventListeners()
 // делаем валидацию
@@ -85,9 +82,7 @@ confirmDeletePopup.setEventListeners()
   const addPopup = new PopupWithform('.popup_add',
   (values) => {
   const item = {name: values.place, link: values.link}
-  console.log(item)
   const newElement = api.addNewCard(item.name, item.link);
-  console.log(newElement)
   cardList.addItem(newElement);
   addPopup.close();
   })
@@ -96,7 +91,6 @@ confirmDeletePopup.setEventListeners()
   (value) => {
     const item = {link: value.link}
     const newAvatar = api.changeUserAvatar(item.link)
-    console.log(newAvatar)
     avatarPopup.close()
   })
   avatarPopup.setEventListeners();
@@ -115,3 +109,4 @@ addButton.addEventListener('click', function() {
   validateAddForm.hideInputErrors();
   addPopup.open();
 });
+})
