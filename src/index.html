@@ -16,11 +16,18 @@
       </header>
       <main>
         <section class="profile">
+          <div class="profile__div-avatar">
           <img
             src="<%=require('./images/avatar.jpg')%>"
             alt="аватар"
             class="profile__avatar"
           />
+          <button
+          type="button"
+          aria-label="Изменить"
+          class="element__change-button"
+        ></button>
+        </div>
           <div class="profile__info">
             <h1 class="profile__name">Жак-Ив Кусто</h1>
             <button type="button" class="profile__edit-button"></button>
@@ -106,6 +113,54 @@
           </button>
         </form>
       </div>
+      <div class="popup popup_delete">
+        <form
+          name="card-delete"
+          class="popup__container popup__container_delete"
+          novalidate
+        >
+          <button
+            type="reset"
+            class="popup__close-button popup__close-button_delete"
+          ></button>
+          <h2 class="popup__title">Вы уверены?</h2>
+          <button
+            type="submit"
+            class="popup__button popup__button_delete"
+          >
+            Да
+          </button>
+        </form>
+      </div>
+      <div class="popup popup_change-avatar">
+        <form
+          name="change-avatar"
+          class="popup__container popup__container_change-avatar"
+          novalidate
+        >
+          <button
+            type="reset"
+            class="popup__close-button popup__close-button_change-avatar"
+          ></button>
+          <h2 class="popup__title">Обновить аватар</h2>
+          <input
+            type="url"
+            name="link"
+            id="link-input"
+            placeholder="Ссылка на аватар"
+            class="popup__input popup__input_change-avatar"
+            required
+          />
+          <span id="link-input-error" class="popup__error"></span>
+          <button
+            type="submit"
+            class="popup__button popup__button_add"
+            
+          >
+            Сохранить
+          </button>
+        </form>
+      </div>
       <div class="popup popup_img">
         <article class="popup__img-article">
           <button
@@ -127,11 +182,14 @@
         ></button>
         <div class="element__subline">
           <h2 class="element__title"></h2>
+          <div class="element__block-like">
           <button
             type="button"
             aria-label="Нравится"
             class="element__button-like"
           ></button>
+          <p class="element__quantity-likes">1</p>
+        </div>
         </div>
       </article>
     </template>

@@ -35,3 +35,40 @@
 @import url(../blocks/popup/__img-article/popup__img-article.css);
 @import url(../blocks/popup/__error/popup__error.css);
 @import url(../blocks/popup/__error/_visible/popup__error_visible.css);
+.profile__div-avatar {
+    position: relative;
+}
+.element__change-button {
+    background-image: url(../images/Change-avatar.svg);
+    background-position: center;
+
+    position:absolute;
+    top: 0;
+    left: 0;
+    background-repeat: no-repeat;
+    margin: auto;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    cursor: pointer;
+    transition: opacity linear 0.3s;
+    outline: none;
+    border: none;
+    opacity: 0;
+}
+.element__change-button:hover {
+    opacity: 1;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+.element__block-like {
+    height: 35px;
+    width: 22px
+}
+.element__quantity-likes {
+    color: black;
+    margin: 0;
+    text-align: center;
+    font-size: 13px;
+    line-height: 15.73px;
+}

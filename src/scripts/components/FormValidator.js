@@ -35,8 +35,8 @@ _checkInput(inputElement) {
     }
 }
 _toggleButtonState() {
-    if(this._hasInvalidInput() || this._allInputEmpty()
-    ) {
+    if(this._hasInvalidInput() || this._allInputEmpty())
+    {
         this._buttonElement.classList.add(this._inactiveButtonClass);
         this._buttonElement.setAttribute('disabled', true);
     } else {

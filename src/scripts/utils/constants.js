@@ -1,5 +1,5 @@
 //Присваиваем значения
-
+const avatarButton = document.querySelector('.element__change-button')
 const editButton = document.querySelector('.profile__edit-button');
 const closeButton = document.querySelector('.popup__close-button');
 const addCloseButton = document.querySelector('.popup__close-button_add');
@@ -10,6 +10,7 @@ const nameInput = document.querySelector('.popup__input_type_name');
 const jobInput = document.querySelector('.popup__input_type_job');
 const popupProfile = document.querySelector('.popup_profile');
 const profileForm = document.querySelector('.popup__container-profile');
+const avatarForm = document.querySelector('.popup__container_change-avatar')
 const addForm = document.querySelector('.popup__container_add');
 const popupAdd= document.querySelector('.popup_add')
 const popupImg = document.querySelector('.popup_img')
@@ -57,4 +58,4 @@ const initialCards = [
       link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
     }
   ];
-  export {editButton, closeButton, addCloseButton, addButtonSubmit, formElement, formAddElement, nameInput, jobInput, popupProfile, popupAdd, popupImg, profileName, profileJob, addButton, elements, imgCloseButton, placeInput, linkInput, initialCards, validationConfig, profileForm, addForm, popupImage, popupImageCaption, popupButtonProfile}
+  export {avatarButton,editButton, closeButton, addCloseButton, addButtonSubmit, formElement, formAddElement, nameInput, jobInput, popupProfile, popupAdd, popupImg, profileName, profileJob, addButton, elements, imgCloseButton, placeInput, linkInput, initialCards, validationConfig, profileForm, addForm, popupImage, popupImageCaption, popupButtonProfile,avatarForm}
