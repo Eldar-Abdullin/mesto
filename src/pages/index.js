@@ -15,9 +15,9 @@ const api = new Api({
     'Content-Type': 'application/json'
   }
 })
+
 api.getAllNeededData().then ( ([cardsArray, userData]) => {
 const userInfo = new UserInfo('.profile__name', '.profile__job', '.profile__avatar') 
-api.getUserInfo()
 // .then((data) => {
 //   userInfo.setUserInfo(data.name, data.about, data.avatar)
 // })
@@ -29,8 +29,6 @@ const createCard = (item) => {
   },
   handleLikeClick: () => {
     api.likeCard(item._id)
-    console.log(item)
-    console.log(item._id)
   },
   handleDeleteIconClick: () => {
     confirmDeletePopup.open()
@@ -50,12 +48,9 @@ const cardList = new Section({
     cardList.addItem(card)
   }},
   elements)
-//const apiCard = api.getAllCards()
-// apiCard.then((data) => {
-//   cardList.renderItems(data)
-//   })
   const userId = userData._id
-  userInfo.setUserInfo(userData.name, userData.about, userData.avatar)
+  userInfo.setUserInfo(userData.name, userData.about)
+  userInfo.setUserAvatar(userData.avatar)
   cardList.renderItems(cardsArray)
 const imagePopup = new PopupWithImage('.popup_img', '.popup__image', '.popup__img-caption')
 imagePopup.setEventListeners()
@@ -75,6 +70,7 @@ confirmDeletePopup.setEventListeners()
     const item = {name: values.name, job: values.job}
     const changeUserInfo = api.changeUserInfo(item.name, item.job)
     console.log(changeUserInfo)
+    userInfo.setUserInfo(item.name, item.job)
     profilePopup.close()
   })
   profilePopup.setEventListeners()
@@ -82,15 +78,22 @@ confirmDeletePopup.setEventListeners()
   const addPopup = new PopupWithform('.popup_add',
   (values) => {
   const item = {name: values.place, link: values.link}
-  const newElement = api.addNewCard(item.name, item.link);
-  cardList.addItem(newElement);
-  addPopup.close();
+  api.addNewCard(item.name, item.link)
+  .then(cardData => {
+    const newElement = createCard(cardData)
+    cardList.addItem(newElement)
+    addPopup.close()
+  }).catch(err => {console.log(err)})
+  .finally()
+  ;
+  
   })
   addPopup.setEventListeners()
   const avatarPopup = new PopupWithform('.popup_change-avatar',
   (value) => {
     const item = {link: value.link}
-    const newAvatar = api.changeUserAvatar(item.link)
+    api.changeUserAvatar(item.link)
+    userInfo.setUserAvatar(item.link)
     avatarPopup.close()
   })
   avatarPopup.setEventListeners();

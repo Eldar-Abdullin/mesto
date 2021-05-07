@@ -5,6 +5,7 @@ export default class PopupWithForm extends Popup {
         this._handleFormSubmit = handleFormSubmit;
         this._popupForm = this._popup.querySelector('.popup__container');
         this._inputList = this._popupForm.querySelectorAll('.popup__input')
+        this._popupButton = this._popup.querySelector('.popup__button')
     }
     // Содержит приватный метод _getInputValues, который собирает данные всех полей формы.
     _getInputValues() {
@@ -18,13 +19,23 @@ export default class PopupWithForm extends Popup {
     // Перезаписывает родительский метод setEventListeners. Метод setEventListeners класса PopupWithForm должен не только добавлять обработчик клика иконке закрытия, но и добавлять обработчик сабмита формы.
     setEventListeners() {
         this._popupForm.addEventListener('submit', (evt) =>
-        {evt.preventDefault() 
+        {evt.preventDefault()
+        this.renderLoading(true) 
         this._handleFormSubmit(this._getInputValues())})
         super.setEventListeners()   
     }
     //Перезаписывает родительский метод close, так как при закрытии попапа форма должна ещё и сбрасываться.
     close () {
         this._popupForm.reset()
+        this.renderLoading(false)
         super.close()
+    }
+    renderLoading(isLoading){
+        if(isLoading) {
+            this._popupButton.textContent = 'Сохранение...'
+        }
+        else {
+            this._popupButton.textContent = 'Сохранить'
+        }
     }
 }
