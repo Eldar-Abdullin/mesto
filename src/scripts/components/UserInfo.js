@@ -12,10 +12,9 @@ export default class UserInfo {
         return this._userInfo 
     }
     // Содержит публичный метод setUserInfo, который принимает новые данные пользователя и добавляет их на страницу.
-    setUserInfo(name, job, avatar) {
+    setUserInfo(name, job) {
         this._userName.textContent = name;
         this._userJob.textContent = job;
-        this._userAvatar.src = avatar;
     }
     setUserAvatar(avatar) {
         this._userAvatar.src = avatar;

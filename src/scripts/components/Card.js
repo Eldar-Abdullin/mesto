@@ -21,8 +21,8 @@ export class Card {
     _isLiked() {
         this._data.likes.some(id => {
             if(id._id === this._meUserId){
-                this._buttonLike.classList.add('element__button-like_active')
-            }
+                return true
+            } return false
         })
     }
     _updateLikesView(){
@@ -35,7 +35,7 @@ export class Card {
         this._buttonLike = this._view.querySelector('.element__button-like')
         this._numberLike = this._view.querySelector('.element__quantity-likes')
         this._updateLikesView()
-        this._isLiked()
+        console.log(this._isLiked())
         this._visibleDeleteButton()
     }
     getCard() {

@@ -7,7 +7,7 @@ import PopupWithSubmit from '../scripts/components/PopupWithSubmit'
 import UserInfo from '../scripts/components/UserInfo.js'
 import Api from '../scripts/components/Api'
 import {FormValidator} from '../scripts/components/FormValidator.js'
-import {avatarButton,editButton, nameInput, jobInput, addButton, validationConfig, addForm, profileForm, elements, avatarForm} from '../scripts/utils/constants.js'
+import {avatarButton,editButton, nameInput, jobInput, addButton, validationConfig, addForm, profileForm, elements, avatarForm, popupAddButton,popupProfileButton} from '../scripts/utils/constants.js'
 const api = new Api({
   url: 'https://mesto.nomoreparties.co/v1/cohort-23',
   headers: {
@@ -67,9 +67,15 @@ confirmDeletePopup.setEventListeners()
   // класс открытия попапа редактирования профиля
   const profilePopup = new PopupWithform('.popup_profile', 
   (values) => {
+    popupProfileButton.textContent= 'Сохранение...'
     const item = {name: values.name, job: values.job}
-    const changeUserInfo = api.changeUserInfo(item.name, item.job)
-    console.log(changeUserInfo)
+    api.changeUserInfo(item.name, item.job)
+    .then( res => {
+      console.log(res)
+      
+    })
+    .catch(err => {console.log(err)})
+    .finally(() => {popupProfileButton.textContent = 'Сохранить'})
     userInfo.setUserInfo(item.name, item.job)
     profilePopup.close()
   })
@@ -77,6 +83,7 @@ confirmDeletePopup.setEventListeners()
 //класс открытия попапа добавления новой карточки
   const addPopup = new PopupWithform('.popup_add',
   (values) => {
+    popupAddButton.textContent = 'Сохранение...'
   const item = {name: values.place, link: values.link}
   api.addNewCard(item.name, item.link)
   .then(cardData => {
@@ -84,7 +91,7 @@ confirmDeletePopup.setEventListeners()
     cardList.addItem(newElement)
     addPopup.close()
   }).catch(err => {console.log(err)})
-  .finally()
+  .finally(() => {popupAddButton.textContent = 'Создать'})
   ;
   
   })
