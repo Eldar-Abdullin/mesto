@@ -7,7 +7,7 @@ import PopupWithSubmit from '../scripts/components/PopupWithSubmit'
 import UserInfo from '../scripts/components/UserInfo.js'
 import Api from '../scripts/components/Api'
 import {FormValidator} from '../scripts/components/FormValidator.js'
-import {avatarButton,editButton, nameInput, jobInput, addButton, validationConfig, addForm, profileForm, elements, avatarForm, popupAddButton,popupProfileButton} from '../scripts/utils/constants.js'
+import {avatarButton,editButton, nameInput, jobInput, addButton, validationConfig, addForm, profileForm, elements, avatarForm, popupAddButton,popupProfileButton,popupAvatarButton} from '../scripts/utils/constants.js'
 const api = new Api({
   url: 'https://mesto.nomoreparties.co/v1/cohort-23',
   headers: {
@@ -27,13 +27,24 @@ const createCard = (item) => {
   handleCardClick: () => {
     imagePopup.open(item)
   },
-  handleLikeClick: () => {
-    api.likeCard(item._id)
+  handleLikeAdd: () => {
+    api.likeCard(item._id).then( res => {
+    newCard.setLIkesInfo(res.likes)
+    console.log(res.likes)
+  }).catch(err => console.log(err))
+  },
+  handleDeleteLike: () => {
+    api.deleteLike(item._id).then( res => {
+      newCard.setLIkesInfo(res.likes)
+      console.log(res.likes)
+    })
   },
   handleDeleteIconClick: () => {
     confirmDeletePopup.open()
-    confirmDeletePopup.setSubmitAction(() => {api.deleteCard(item._id)
-    newCard.deleteCardHandler()}
+    confirmDeletePopup.setSubmitAction(() => {api.deleteCard(item._id).then(() => {newCard.deleteCardHandler()
+      confirmDeletePopup.close()}
+    )
+    }
     )
   }
 },
@@ -71,13 +82,15 @@ confirmDeletePopup.setEventListeners()
     const item = {name: values.name, job: values.job}
     api.changeUserInfo(item.name, item.job)
     .then( res => {
-      console.log(res)
-      
-    })
+      return res.json()}).then( data => {
+        console.log(data)
+      userInfo.setUserInfo(data.name, data.about)
+      profilePopup.close()
+    }
+    )
     .catch(err => {console.log(err)})
     .finally(() => {popupProfileButton.textContent = 'Сохранить'})
-    userInfo.setUserInfo(item.name, item.job)
-    profilePopup.close()
+    
   })
   profilePopup.setEventListeners()
 //класс открытия попапа добавления новой карточки
@@ -93,15 +106,18 @@ confirmDeletePopup.setEventListeners()
   }).catch(err => {console.log(err)})
   .finally(() => {popupAddButton.textContent = 'Создать'})
   ;
-  
   })
   addPopup.setEventListeners()
   const avatarPopup = new PopupWithform('.popup_change-avatar',
   (value) => {
+    popupAvatarButton.textContent = 'Сохранение...'
     const item = {link: value.link}
-    api.changeUserAvatar(item.link)
-    userInfo.setUserAvatar(item.link)
-    avatarPopup.close()
+    api.changeUserAvatar(item.link).then(res => {
+      return res.json()
+    }).then(data => {userInfo.setUserAvatar(data.avatar)
+      avatarPopup.close()})
+      .catch(err => console.log(err))
+      .finally(popupAvatarButton.textContent = 'Сохранить')
   })
   avatarPopup.setEventListeners();
 // делаем функцию отправки данных из popup в профиль
@@ -113,6 +129,7 @@ editButton.addEventListener('click', () => {
 profilePopup.open()
 });
 avatarButton.addEventListener('click',() => {
+  validateAvatarForm.hideInputErrors()
   avatarPopup.open()
 } )
 addButton.addEventListener('click', function() {

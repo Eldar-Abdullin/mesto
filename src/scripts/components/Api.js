@@ -7,27 +7,19 @@ export default class Api {
         return fetch(`${this._url}/cards`,
         {method: 'GET',
             headers: this._headers})
-            .then((res) => {
-                if (res.ok) {
+            .then(this._checkResponse)
+        }
+        _checkResponse(res) {
+            if (res.ok) {
                 return res.json();}
                 return Promise.reject(`Ошибка: ${res.status}`);
-            })
-            .catch((err) => {
-                console.log(err)
-            })
+            
         }
     getUserInfo() {
         return fetch(`${this._url}/users/me`,
         {method: 'GET',
             headers: this._headers})
-            .then((res) => {
-                if (res.ok) {
-                return res.json();}
-                return Promise.reject(`Ошибка: ${res.status}`);
-            })
-            .catch((err) => {
-                console.log(err)
-            })
+            .then(this._checkResponse)
         }
     getAllNeededData() {
         return Promise.all([this.getAllCards(), this.getUserInfo()])
@@ -50,14 +42,7 @@ export default class Api {
               name: name,
               link: link
             })
-        }).then((res) => {
-            if (res.ok) {
-            return res.json();}
-            return Promise.reject(`Ошибка: ${res.status}`);
-        })
-        .catch((err) => {
-            console.log(err)
-        });
+        }).then(this._checkResponse)
     }
     changeUserAvatar(avatar){
         return fetch(`${this._url}/users/me/avatar`, {
@@ -74,14 +59,7 @@ export default class Api {
             headers: this._headers
         }
         )
-        .then((res) => {
-            if (res.ok) {
-            return res.json();}
-            return Promise.reject(`Ошибка: ${res.status}`);
-        })
-        .catch((err) => {
-            console.log(err)
-        })
+        .then(this._checkResponse)
     }
     deleteLike(cardId) {
         return fetch(`${this._url}/cards/likes/${cardId}`,{
@@ -89,27 +67,13 @@ export default class Api {
             headers: this._headers
         }
         )
-        .then((res) => {
-            if (res.ok) {
-            return res.json();}
-            return Promise.reject(`Ошибка: ${res.status}`);
-        })
-        .catch((err) => {
-            console.log(err)
-        })
+        .then(this._checkResponse)
     }
     deleteCard(cardId) {
         return fetch(`${this._url}/cards/${cardId}`, {
             method: 'DELETE',
             headers: this._headers
         })
-        .then((res) => {
-            if (res.ok) {
-            return res.json();}
-            return Promise.reject(`Ошибка: ${res.status}`);
-        })
-        .catch((err) => {
-            console.log(err)
-        })
+        .then(this._checkResponse)
     }
     }

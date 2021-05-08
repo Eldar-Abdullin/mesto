@@ -11,7 +11,6 @@ export default class PopupWithSubmit extends Popup {
         this._popup.addEventListener('submit', (evt) => {
             evt.preventDefault()
             this._handleSubmitCallback()
-            this.close()
         })
         super.setEventListeners()
         

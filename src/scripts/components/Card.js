@@ -1,12 +1,13 @@
 export class Card {
-    constructor({data, handleCardClick,handleLikeClick,handleDeleteIconClick}, cardSelector, meUserId) {
+    constructor({data, handleCardClick,handleLikeAdd,handleDeleteLike, handleDeleteIconClick}, cardSelector, meUserId) {
         this._data = data
         this._name = data.name;
         this._link = data.link;
         this._userId = data.owner._id
         this._meUserId = meUserId;
         this._handleCardClick = handleCardClick;
-        this._handleLikeClick = handleLikeClick;
+        this._handleLikeAdd = handleLikeAdd;
+        this._handleDeleteLike = handleDeleteLike
         this._handleDeleteIconClick = handleDeleteIconClick
         this._cardSelector = cardSelector;
         this._element = document.querySelector(this._cardSelector).content.cloneNode(true)
@@ -19,15 +20,16 @@ export class Card {
 
     }
     _isLiked() {
-        this._data.likes.some(id => {
-            if(id._id === this._meUserId){
-                return true
-            } return false
-        })
+        return this._data.likes.some(id => id._id === this._meUserId)
     }
     _updateLikesView(){
         this._numberLike.textContent = this._data.likes.length
-        
+        if(this._isLiked() === true)
+        {this._addLikeButton()}
+    }
+    setLIkesInfo(data){
+        this._data.likes = data
+        this._updateLikesView()
     }
     _createView() {
         this._view = this._element.querySelector('.element');
@@ -51,15 +53,19 @@ export class Card {
     deleteCardHandler() {
         this._view.remove();
     }
-
-    _likeHandler() {
-        this._buttonLike.classList.toggle('element__button-like_active');
+    _deleteLikeButton(){
+        this._buttonLike.classList.remove('element__button-like_active')
     }
-
+    _addLikeButton(){
+        this._buttonLike.classList.add('element__button-like_active')
+    }
     _setEventListeners() {
         this._buttonLike.addEventListener('click',() => {
-            this._likeHandler();
-            this._handleLikeClick();
+            if(this._isLiked() === true){
+                this._handleDeleteLike();
+                this._deleteLikeButton();
+            }else {this._handleLikeAdd();
+             this._addLikeButton()}
         })
         this._deleteButton.addEventListener('click', () => {
             this._handleDeleteIconClick();
