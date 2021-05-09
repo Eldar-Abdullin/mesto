@@ -7,7 +7,7 @@ import PopupWithSubmit from '../scripts/components/PopupWithSubmit'
 import UserInfo from '../scripts/components/UserInfo.js'
 import Api from '../scripts/components/Api'
 import {FormValidator} from '../scripts/components/FormValidator.js'
-import {avatarButton,editButton, nameInput, jobInput, addButton, validationConfig, addForm, profileForm, elements, avatarForm, popupAddButton,popupProfileButton,popupAvatarButton} from '../scripts/utils/constants.js'
+import {avatarButton,editButton, nameInput, jobInput, addButton, validationConfig, addForm, profileForm, elements, avatarForm, popupAddButton,popupProfileButton,popupAvatarButton,popupButtonDelete} from '../scripts/utils/constants.js'
 const api = new Api({
   url: 'https://mesto.nomoreparties.co/v1/cohort-23',
   headers: {
@@ -18,9 +18,6 @@ const api = new Api({
 
 api.getAllNeededData().then ( ([cardsArray, userData]) => {
 const userInfo = new UserInfo('.profile__name', '.profile__job', '.profile__avatar') 
-// .then((data) => {
-//   userInfo.setUserInfo(data.name, data.about, data.avatar)
-// })
 // // функция создания новой карточки
 const createCard = (item) => {
   const newCard = new Card({data: item, 
@@ -36,14 +33,13 @@ const createCard = (item) => {
   handleDeleteLike: () => {
     api.deleteLike(item._id).then( res => {
       newCard.setLIkesInfo(res.likes)
-      console.log(res.likes)
-    })
+    }).catch(err => console.log(err))
   },
   handleDeleteIconClick: () => {
     confirmDeletePopup.open()
     confirmDeletePopup.setSubmitAction(() => {api.deleteCard(item._id).then(() => {newCard.deleteCardHandler()
       confirmDeletePopup.close()}
-    )
+    ).catch(err => console.log(err))
     }
     )
   }
@@ -81,8 +77,7 @@ confirmDeletePopup.setEventListeners()
     popupProfileButton.textContent= 'Сохранение...'
     const item = {name: values.name, job: values.job}
     api.changeUserInfo(item.name, item.job)
-    .then( res => {
-      return res.json()}).then( data => {
+    .then( data => {
         console.log(data)
       userInfo.setUserInfo(data.name, data.about)
       profilePopup.close()
@@ -112,9 +107,8 @@ confirmDeletePopup.setEventListeners()
   (value) => {
     popupAvatarButton.textContent = 'Сохранение...'
     const item = {link: value.link}
-    api.changeUserAvatar(item.link).then(res => {
-      return res.json()
-    }).then(data => {userInfo.setUserAvatar(data.avatar)
+    api.changeUserAvatar(item.link)
+    .then(data => {userInfo.setUserAvatar(data.avatar)
       avatarPopup.close()})
       .catch(err => console.log(err))
       .finally(popupAvatarButton.textContent = 'Сохранить')
@@ -136,4 +130,4 @@ addButton.addEventListener('click', function() {
   validateAddForm.hideInputErrors();
   addPopup.open();
 });
-})
+}).catch(err => console.log(err))

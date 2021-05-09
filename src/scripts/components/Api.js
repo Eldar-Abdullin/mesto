@@ -32,7 +32,7 @@ export default class Api {
               name: name,
               about: about
             })
-          }); 
+          }).then(this._checkResponse); 
     }
     addNewCard(name, link) {
         return fetch(`${this._url}/cards`,
@@ -51,7 +51,7 @@ export default class Api {
             body: JSON.stringify({
               avatar: avatar
             })
-          });
+          }).then(this._checkResponse);
     }
     likeCard(cardId) {
         return fetch(`${this._url}/cards/likes/${cardId}`,{
