@@ -37,7 +37,8 @@ const createCard = (item) => {
   },
   handleDeleteIconClick: () => {
     confirmDeletePopup.open()
-    confirmDeletePopup.setSubmitAction(() => {api.deleteCard(item._id).then(() => {newCard.deleteCardHandler()
+    confirmDeletePopup.setSubmitAction(() => {api.deleteCard(item._id).then(() => {
+    newCard.deleteCardHandler()
       confirmDeletePopup.close()}
     ).catch(err => console.log(err))
     }
